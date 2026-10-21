@@ -43,6 +43,14 @@ wallet-hygiene sweep --allowlist allowlist.json --to 0xYourMainWallet --yes
 { "addresses": ["0xOldWalletOne", "0xOldWalletTwo"] }
 ```
 
+## What it found in the wild
+
+Running it on a real machine immediately surfaced something a normal wallet
+balance view misses: **6.78 ETH sitting on `0xEeee…Eee` on Base** — the canonical
+placeholder/burn address, invisible in every explorer UI you normally look at.
+No key exists for it, so the money is stuck by design; the value of the report is
+that you now *know* it is there instead of wondering where it went.
+
 ## The rules it follows
 
 These are not limitations, they are the point:
