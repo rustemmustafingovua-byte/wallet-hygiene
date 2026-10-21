@@ -2,6 +2,11 @@
 
 # wallet-hygiene
 
+<p align="center">
+  <img src="docs/social-preview.png" alt="wallet-hygiene" width="720">
+</p>
+
+
 **Keep your own wallets under control: find leaked keys, find forgotten addresses with leftover funds, and sweep them to your main wallet.**
 
 [![license](https://img.shields.io/badge/license-MIT-8b949e?logo=opensourceinitiative)](./LICENSE)
