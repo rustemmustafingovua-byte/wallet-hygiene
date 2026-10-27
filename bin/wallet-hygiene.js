@@ -64,6 +64,17 @@ export const KNOWN_DEV_KEYS = new Set([
   "0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba",
 ])
 
+/** Известные токен-контракты — не являются "забытыми кошельками". */
+export const KNOWN_TOKEN_ADDRESSES = new Set([
+  "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", // USDC (Base)
+  "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", // USDC (Ethereum)
+  "0xdac17f958d2ee523a2206206994597c13d831ec7", // USDT (Ethereum)
+  "0x6b175474e89094c44da98b954eedeac495271d0f", // DAI (Ethereum)
+  "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2", // WETH (Ethereum)
+  "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599", // WBTC (Ethereum)
+  "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619", // WETH (Polygon)
+])
+
 /** Каталоги вендоров и тестовых фикстур — там ключи ожидаемы. */
 const VENDOR_PATH = /[\/](lib|node_modules|vendor|testdata|fixtures)[\/]/i
 
@@ -178,6 +189,7 @@ export function findOwnAddresses(roots, gitDirs = []) {
   const re = /0x[a-fA-F0-9]{40}/g
   const add = (addr, src) => {
     const a = addr.toLowerCase()
+    if (KNOWN_TOKEN_ADDRESSES.has(a)) return
     if (!found.has(a)) found.set(a, new Set())
     found.get(a).add(src)
   }

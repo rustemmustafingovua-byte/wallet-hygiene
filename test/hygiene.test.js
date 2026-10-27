@@ -3,7 +3,7 @@ import assert from "node:assert/strict"
 import { mkdtempSync, writeFileSync, mkdirSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
-import { findKeyLeaks, findOwnAddresses, walk, isKnownConstant, KNOWN_DEV_KEYS } from "../bin/wallet-hygiene.js"
+import { findKeyLeaks, findOwnAddresses, walk, isKnownConstant, KNOWN_DEV_KEYS, KNOWN_TOKEN_ADDRESSES } from "../bin/wallet-hygiene.js"
 
 const KEY = "0x" + "a".repeat(63) + "1"
 
@@ -69,4 +69,11 @@ test("свои адреса находятся и привязаны к исто
 test("пустая директория не ломает поиск", () => {
   assert.equal(findKeyLeaks(["/nope/not/here"]).length, 0)
   assert.equal(findOwnAddresses(["/nope/not/here"]).length, 0)
+})
+
+test("известные токен-контракты не попадают в забытые адреса", () => {
+  const dir = mkdtempSync(join(tmpdir(), "wh-"))
+  writeFileSync(join(dir, "tokens.txt"), "USDC: 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913")
+  const found = findOwnAddresses([dir])
+  assert.equal(found.length, 0, "USDC контракт не должен быть в забытых адресах")
 })

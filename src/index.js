@@ -12,4 +12,6 @@ export {
   walk,
   balancesAt,
   CHAINS,
+  isKnownConstant,
+  KNOWN_TOKEN_ADDRESSES,
 } from "../bin/wallet-hygiene.js"
