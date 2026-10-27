@@ -1,97 +1,59 @@
 <div align="center">
 
-# wallet-hygiene
+# Wallet Hygiene
 
-<p align="center">
-  <img src="docs/social-preview.png" alt="wallet-hygiene" width="720">
-</p>
-
-
-**Keep your own wallets under control: find leaked keys, find forgotten addresses with leftover funds, and sweep them to your main wallet.**
-
-[![license](https://img.shields.io/badge/license-MIT-8b949e?logo=opensourceinitiative)](./LICENSE)
-[![node](https://img.shields.io/badge/node-%3E%3D20-3c873a?logo=node.js)](https://nodejs.org)
+[![CI](https://github.com/rustemmustafingovua-byte/wallet-hygiene/actions/workflows/ci.yml/badge.svg)](https://github.com/rustemmustafingovua-byte/wallet-hygiene/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/wallet-hygiene?color=cb3837&logo=npm)](https://www.npmjs.com/package/wallet-hygiene) [![license](https://img.shields.io/badge/license-MIT-8b949e?logo=opensourceinitiative)](./LICENSE)
 
 </div>
 
 ---
 
-## What it does
+**Keep your own wallets under control: find leaked keys, find forgotten addresses with leftover funds, and sweep them to your main wallet.**
 
-| Command | What it does |
-|
+---
 
-⭐ **Star us on GitHub** — it helps others find the project.
----|---|
-| `keys` | finds private keys, seed phrases and access tokens in **your** files and repos; separates real leaks (in git) from expected storage (`secrets/`, `.env`) |
-| `forgotten` | finds addresses you have used (git history, configs, logs) and checks their balances on every chain — your forgotten wallets |
-| `balances` | native balance + token balances for an address, per chain |
-| `sweep` | builds a plan to move funds from allow-listed addresses to your main wallet, then executes it (gas is paid by the source wallet, so no external funds are needed) |
+⭐ **Star us on GitHub** if this project helps you build better agents!
 
-## Quick Start
+---
+
+## 🚀 Быстрый старт
 
 ```bash
-git clone https://github.com/rustemmustafingovua-byte/wallet-hygiene.git
+git clone https://github.com/rustemmustafingovua-byte/wallet-hygiene
 cd wallet-hygiene && npm install
 npm test
 ```
 
-## Install
+---
 
-```bash
-npm i -g wallet-hygiene
-```
-
-## Use
+## 🎯 Демо
 
 ```bash
 wallet-hygiene init --main 0xYourMainWallet
 wallet-hygiene keys
 wallet-hygiene forgotten --chains base,eth
-wallet-hygiene balances --address 0xYourOldWallet
-wallet-hygiene sweep --allowlist allowlist.json --to 0xYourMainWallet
 wallet-hygiene sweep --allowlist allowlist.json --to 0xYourMainWallet --yes
 ```
 
-`allowlist.json`:
+---
 
-```json
-{ "addresses": ["0xOldWalletOne", "0xOldWalletTwo"] }
-```
+## 💰 Монетизация
 
-## What it found in the wild
-
-Running it on a real machine immediately surfaced something a normal wallet
-balance view misses: **6.78 ETH sitting on `0xEeee…Eee` on Base** — the canonical
-placeholder/burn address, invisible in every explorer UI you normally look at.
-No key exists for it, so the money is stuck by design; the value of the report is
-that you now *know* it is there instead of wondering where it went.
-
-## The rules it follows
-
-These are not limitations, they are the point:
-
-- it touches **only** addresses from your allowlist;
-- `--to` must match the main wallet from the config;
-- `sweep` prints a plan first and needs `--yes` to move anything;
-- the gas for a sweep is paid by the **source** wallet, so you need no funds anywhere else;
-- it does not try to guess keys for wallets you do not own. That is theft, not hygiene.
-
-## Chains
-
-Base, Ethereum, Arbitrum, Optimism, Polygon. More via `CHAINS` in `bin/wallet-hygiene.js`.
-
-## Tests
-
-```bash
-npm test     # 8 tests: detection precision, allowlist rules, tree walking
-```
-
-MIT © rustemmustafingovua-byte
-
+- **Security audits**: аудит безопасности кошельков для фондов и enterprise
+- **Consulting**: настройка процессов ключ-гигиены для команды
+- **Custom chain support**: добавление новых сетей под заказ
+- **SaaS hosting**: хостинг сервиса с white-label для крипто-компаний
 
 ---
 
-## Monetization
+## Contributing
 
-This project earns through x402 micropayments, API key tiers, and hosted subscriptions. See package.json `funding` field for details.
+1. Fork the repo
+2. Create a feature branch (`git checkout -b feat/amazing-thing`)
+3. Commit your changes (`git commit -m 'feat: add amazing thing'`)
+4. Push to the branch (`git push origin feat/amazing-thing`)
+5. Open a Pull Request
+
+Bug reports and feature requests are welcome on the [Issues](https://github.com/rustemmustafingovua-byte/wallet-hygiene/issues) page.
+
+MIT © rustemmustafingovua-byte
