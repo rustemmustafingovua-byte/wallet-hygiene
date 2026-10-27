@@ -265,6 +265,18 @@ function saveConfig(cfg) {
   chmodSync(CONFIG_FILE, 0o600)
 }
 
+function pushDashboardStats(data) {
+  const webhook = process.env.DASHBOARD_WEBHOOK_URL
+  if (!webhook) return
+  try {
+    fetch(webhook + "/webhook/wallet-hygiene", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    }).catch(() => {})
+  } catch {}
+}
+
 const argv = process.argv.slice(2)
 const cmd = argv[0] ?? "help"
 const flag = (name, def = null) => {
@@ -315,6 +327,7 @@ async function main() {
       if (crit) console.log(bad(`  критично: ${crit} — ключ в git считается скомпрометированным, смени его`))
       if (med) console.log(warn(`  стоит проверить: ${med}`))
       console.log(dim(`  в ожидаемых местах (secrets/, .env): ${classified.length - crit - med}`))
+      pushDashboardStats({ scans: 1, keysFound: classified.length })
       break
     }
 
@@ -356,6 +369,7 @@ async function main() {
         }
         console.log(dim("\n  добавь адрес в allowlist и запусти sweep — газ платит сам кошелёк"))
       }
+      pushDashboardStats({ scans: 1, keysFound: interesting.length })
       break
     }
 

@@ -4,11 +4,31 @@
   "description": "Keep your own wallets under control: find leaked keys, find forgotten addresses with leftover funds, and sweep them to your main wallet.",
   "type": "module",
   "license": "MIT",
-  "bin": { "wallet-hygiene": "bin/wallet-hygiene.js" },
-  "exports": { ".": "./src/index.js" },
-  "engines": { "node": ">=20" },
-  "keywords": ["wallet", "ethereum", "base", "security", "hygiene", "sweep", "keys", "crypto"],
-  "files": ["bin", "src", "README.md", "LICENSE"],
+  "bin": {
+    "wallet-hygiene": "bin/wallet-hygiene.js"
+  },
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "wallet",
+    "ethereum",
+    "base",
+    "security",
+    "hygiene",
+    "sweep",
+    "keys",
+    "crypto"
+  ],
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "node --test test/*.test.js",
     "lint": "node --check bin/wallet-hygiene.js && node --check src/index.js"
@@ -17,7 +37,16 @@
     "type": "git",
     "url": "https://github.com/rustemmustafingovua-byte/wallet-hygiene.git"
   },
-  "bugs": { "url": "https://github.com/rustemmustafingovua-byte/wallet-hygiene/issues" },
+  "bugs": {
+    "url": "https://github.com/rustemmustafingovua-byte/wallet-hygiene/issues"
+  },
   "homepage": "https://github.com/rustemmustafingovua-byte/wallet-hygiene",
-  "dependencies": { "viem": "^2.57.7" }
+  "dependencies": {
+    "viem": "^2.57.7"
+  },
+  "funding": {
+    "custom": [
+      "https://github.com/sponsors/rustemmustafingovua-byte"
+    ]
+  }
 }

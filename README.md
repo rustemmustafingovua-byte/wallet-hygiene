@@ -19,11 +19,22 @@
 ## What it does
 
 | Command | What it does |
-|---|---|
+|
+
+⭐ **Star us on GitHub** — it helps others find the project.
+---|---|
 | `keys` | finds private keys, seed phrases and access tokens in **your** files and repos; separates real leaks (in git) from expected storage (`secrets/`, `.env`) |
 | `forgotten` | finds addresses you have used (git history, configs, logs) and checks their balances on every chain — your forgotten wallets |
 | `balances` | native balance + token balances for an address, per chain |
 | `sweep` | builds a plan to move funds from allow-listed addresses to your main wallet, then executes it (gas is paid by the source wallet, so no external funds are needed) |
+
+## Quick Start
+
+```bash
+git clone https://github.com/rustemmustafingovua-byte/wallet-hygiene.git
+cd wallet-hygiene && npm install
+npm test
+```
 
 ## Install
 
@@ -77,3 +88,10 @@ npm test     # 8 tests: detection precision, allowlist rules, tree walking
 ```
 
 MIT © rustemmustafingovua-byte
+
+
+---
+
+## Monetization
+
+This project earns through x402 micropayments, API key tiers, and hosted subscriptions. See package.json `funding` field for details.
