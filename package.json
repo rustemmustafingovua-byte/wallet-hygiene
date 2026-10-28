@@ -14,24 +14,16 @@
     "node": ">=20"
   },
   "keywords": [
-    "wallet",
-    "ethereum",
-    "base",
-    "security",
-    "hygiene",
-    "sweep",
-    "keys",
-    "crypto"
+    "wallet", "ethereum", "base", "security", "hygiene", "sweep", "keys", "crypto"
   ],
-  "files": [
-    "bin",
-    "src",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["bin", "src", "README.md", "LICENSE"],
   "scripts": {
     "test": "node --test test/*.test.js",
+    "build": "node -e "console.log('No build step required for wallet-hygiene')"",
     "lint": "node --check bin/wallet-hygiene.js && node --check src/index.js"
+  },
+  "dependencies": {
+    "viem": "^2.57.7"
   },
   "repository": {
     "type": "git",
@@ -41,9 +33,6 @@
     "url": "https://github.com/rustemmustafingovua-byte/wallet-hygiene/issues"
   },
   "homepage": "https://github.com/rustemmustafingovua-byte/wallet-hygiene",
-  "dependencies": {
-    "viem": "^2.57.7"
-  },
   "funding": {
     "custom": [
       "https://github.com/sponsors/rustemmustafingovua-byte"
