@@ -1,7 +1,7 @@
 {
   "name": "wallet-hygiene",
-  "version": "0.1.0",
-  "description": "Keep your own wallets under control: find leaked keys, find forgotten addresses with leftover funds, and sweep them to your main wallet.",
+  "version": "0.2.0",
+  "description": "Keep your own wallets under control. Find leaked keys and forgotten balances on your machine, sweep them to your main wallet, and sell public balance lookups via x402. Private keys never leave the machine.",
   "type": "module",
   "license": "MIT",
   "bin": {
@@ -14,13 +14,15 @@
     "node": ">=20"
   },
   "keywords": [
-    "wallet", "ethereum", "base", "security", "hygiene", "sweep", "keys", "crypto"
+    "wallet", "ethereum", "base", "security", "hygiene", "sweep", "keys", "crypto", "x402"
   ],
-  "files": ["bin", "src", "README.md", "LICENSE"],
+  "files": ["bin", "src", "README.md", "LICENSE", "docs/SECURITY.md"],
   "scripts": {
-    "test": "node --test test/*.test.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js",
     "build": "echo 'No build step required for wallet-hygiene'",
-    "lint": "node --check bin/wallet-hygiene.js && node --check src/index.js"
+    "lint": "node scripts/lint.js",
+    "start": "node bin/wallet-hygiene.js serve",
+    "prepublishOnly": "npm test"
   },
   "dependencies": {
     "viem": "^2.57.7"
