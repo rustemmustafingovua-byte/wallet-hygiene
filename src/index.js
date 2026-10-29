@@ -1,17 +1,29 @@
 /**
- * wallet-hygiene — публичный API пакета.
+ * wallet-hygiene public API.
  *
- * Инструмент работает только с адресами, которые ты сам перечислил в allowlist:
- * он находит твои забытые кошельки с остатками, утечки ключей и помогает
- * собрать средства на основной кошелёк. Подбирать ключи к чужим кошелькам
- * он не умеет — это кража, а не гигиена.
+ * Scans and sweeps stay on the machine that holds the keys. The HTTP API
+ * accepts public addresses only. See docs/SECURITY.md.
  */
+export { isAddress } from "./address.js"
+export { createApiServer, listen } from "./api.js"
+export { balancesAt, createChainClient } from "./balances.js"
+export { CHAINS, chainRpc } from "./chains.js"
+export { loadConfig, loadKeyMap, readAllowlist, saveConfig } from "./config.js"
 export {
+  SecretEgressError,
+  createGuardedFetch,
+  registerSecret,
+  resetSecretRegistry,
+  sealEnvironmentSecrets,
+} from "./privacy.js"
+export {
+  KNOWN_DEV_KEYS,
+  KNOWN_TOKEN_ADDRESSES,
   findKeyLeaks,
   findOwnAddresses,
-  walk,
-  balancesAt,
-  CHAINS,
   isKnownConstant,
-  KNOWN_TOKEN_ADDRESSES,
-} from "../bin/wallet-hygiene.js"
+  isTrackedByGit,
+  walk,
+} from "./scan.js"
+export { planNativeSweep, sweepOne } from "./sweep.js"
+export { paymentConfig, buildPaymentRequired } from "./x402.js"
